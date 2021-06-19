@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Быки и коровы</title>
+</head>
+<body>
+    <script>
+    var b,k;
+        function RND (a,b)
+        {
+            return Math.floor(Math.random()*(b-a+1)+a);
+        }
+        function Make ()
+        {
+            var s='';
+            for (var i = 0; i<4; i++)
+            {
+                do
+                {
+                    var c = RND(0,9);
+                }
+                while(s.indexOf(c)>=0);
+                s=s+c;
+            }
+            return s;
+        }
+        function Analis(make,attempt)
+        {
+            b=0;
+            k=0;
+            for(var i=0; i<4;i++)
+            {
+                if(make[i]==attempt[i])
+                b++;
+                else
+                if(make.indexOf(attempt[i])>=0) k++;
+            }
+        }
+    var m=Make();  
+    for(var i=0; i<15; i++)
+    {
+        var c=prompt("Правила такие:Компьютер задумывает четыре различные цифры из 0,1,2,...9. Игрок делает ходы, чтобы узнать эти цифры и их порядок. Каждый ход состоит из четырёх цифр, 0 может стоять на первом месте. Введите число 15 чисел по очереди. Игра закончится если вы отгадаете число,задуманое компьютером или если за 15 попыток вы не отгадаете. ");
+        Analis(m,c);
+        var s=c+ " " + b + "Б " + k + "K ";
+        document.write(s+ "<br>");
+        if(c==m)
+        {
+            alert("Вы выиграли");
+            break;
+        }
+    }
+    document.write("Загаданное число: " + m);
+    
+    </script>
+</body>
+</html>
